@@ -6,5 +6,5 @@ import (
 )
 
 func createUser(w http.ResponseWriter, r *http.Request, p httprouter.Params)  {
-	
+	sendNormalResponse(w, "success", 201)
 }

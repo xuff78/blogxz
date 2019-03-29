@@ -11,7 +11,7 @@ func Prepare(){
 
 func registerHandlers() *httprouter.Router{
 	router := httprouter.New()
-	router.POST("/addUser", createUser)
+	router.GET("/addUser", createUser)
 	return router
 }
 
