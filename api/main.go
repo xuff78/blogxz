@@ -12,7 +12,7 @@ func Prepare(){
 func registerHandlers() *httprouter.Router{
 	router := httprouter.New()
 	router.GET("/addUser", createUser)
-	router.ServeFiles("/firealarmWeb/*filepath", http.Dir("../template"))
+	router.ServeFiles("/PPhomegame/*filepath", http.Dir("../template"))
 	return router
 }
 
