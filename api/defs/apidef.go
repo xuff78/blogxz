@@ -1,11 +1,17 @@
 package defs
 
+// import "github.com/asaskevich/govalidator"
+
+// func init() {
+//   govalidator.SetFieldsRequiredByDefault(true)
+// }
+
 //reqeusts
 type UserCredential struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-	Nickname string `json:"nickname"`
-	Privileges string `json:"privileges"`
+	Username string `json:"username" valid:"required"`
+	Password string `json:"password" valid:"required"`
+	Nickname string `json:"nickname" valid:"required"`
+	Privileges string `json:"privileges" valid:"required"`
 }
 
 type NewComment struct {
