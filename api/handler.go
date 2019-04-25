@@ -27,7 +27,7 @@ func createUser(w http.ResponseWriter, r *http.Request, p httprouter.Params)  {
 		return
 	}
 
-	result := &defs.SignedUp{Success: true, SessionId: "test"}
+	result := &defs.SignedUp{Success: true, SessionId: "aaa"}
 	resp, _ := json.Marshal(result);
 	sendNormalResponse(w, string(resp), 201)
 }
