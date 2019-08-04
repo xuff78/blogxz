@@ -28,7 +28,7 @@ func registerHandlers() *httprouter.Router{
 	router := httprouter.New()
 
 	router.POST("/addUser", createUser)
-	router.POST("/delUser", createUser)
+	router.POST("/delUser", delUser)
 	router.POST("/updateUser", createUser)
 
 	router.POST("/getGameList", createUser)

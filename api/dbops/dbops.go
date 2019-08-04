@@ -49,3 +49,26 @@ func AddUserCredential(body *defs.UserCredential) error {
 	defer sqlins.Close()
 	return nil
 }
+
+func DelUser(userid int) error {
+	sqlins, err := dbConn.Prepare("DELETE FROM users WHERE id=?")
+	if err != nil {
+		return err
+	}
+	_, err = sqlins.Exec(userid)
+	if err != nil {
+		return err
+	}
+
+	sqlins2, err := dbConn.Prepare("DELETE FROM userprivilege WHERE user_id=?")
+	if err != nil {
+		return err
+	}
+	_, err = sqlins2.Exec(userid)
+	if err != nil {
+		return err
+	}
+
+	defer sqlins.Close()
+	return nil
+}

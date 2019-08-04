@@ -9,6 +9,8 @@ import (
 	"log"
 	"github.com/blogxz/api/defs"
 	"github.com/blogxz/api/dbops"
+	"strconv"
+	"fmt"
 )
 
 func createUser(w http.ResponseWriter, r *http.Request, p httprouter.Params)  {
@@ -28,6 +30,27 @@ func createUser(w http.ResponseWriter, r *http.Request, p httprouter.Params)  {
 	}
 
 	result := &defs.SignedUp{Success: true, SessionId: "aaa"}
+	resp, _ := json.Marshal(result);
+	sendNormalResponse(w, string(resp), 201)
+}
+
+func delUser(w http.ResponseWriter, r *http.Request, p httprouter.Params)  {
+
+	userid, err := strconv.Atoi(p.ByName("userid"));
+	fmt.Println(userid)
+	if err !=nil{
+		log.Printf("%s", err)
+		sendErrorResponse(w, defs.ErrorRequestBodyParseFailed)
+		return
+	}
+
+	if err := dbops.DelUser(userid); err !=nil{
+		log.Printf("%s", err)
+		sendErrorResponse(w, defs.ErrorDBError)
+		return
+	}
+
+	result := &defs.SignedUp{Success: true}
 	resp, _ := json.Marshal(result);
 	sendNormalResponse(w, string(resp), 201)
 }
